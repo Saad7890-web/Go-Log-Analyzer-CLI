@@ -1,0 +1,5 @@
+192.168.0.1 GET /api/users 200 120
+192.168.0.2 POST /api/login 500 300
+192.168.0.1 GET /api/users 200 110
+192.168.0.3 GET /api/products 200 90
+192.168.0.2 GET /api/users 404 150
