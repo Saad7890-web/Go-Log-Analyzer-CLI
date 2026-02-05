@@ -40,3 +40,11 @@ func TestParseLine(t *testing.T){
 		}
 	}
 }
+
+func BenchmarkParseLine(b *testing.B){
+	line := "192.168.0.1 GET /api/users 200 120"
+
+	for i := 0; i < b.N; i++ {
+		_,_ = ParseLine(line)
+	}
+}

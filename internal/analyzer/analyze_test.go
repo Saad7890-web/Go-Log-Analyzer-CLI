@@ -31,3 +31,22 @@ func TestAnalyze(t *testing.T) {
 		t.Errorf("TopEndpoint got %s, want /a", report.TopEndpoint)
 	}
 }
+
+func BenchmarkAnalyze(b *testing.B) {
+	entries := make([]parser.LogEntry, 10000)
+
+	for i := 0; i < 10000; i++ {
+		entries[i] = parser.LogEntry{
+			IP:           "1.1.1.1",
+			Endpoint:     "/api/users",
+			StatusCode:   200,
+			ResponseTime: 120,
+		}
+	}
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		Analyze(entries)
+	}
+}
